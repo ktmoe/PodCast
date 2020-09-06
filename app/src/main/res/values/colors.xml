@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ec5757</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+
+    <color name="bgColorPrimary">#5854a3</color>
+    <color name="categoryColorArtAndDesign">#fdda8a</color>
+    <color name="categoryColorCulture">#cee6e7</color>
+    <color name="categoryColorFashion">#e8d1e5</color>
+    <color name="progressBarColor">#bae2fe</color>
+
+    <color name="textColorPrimary">#0a0a0a</color>
+    <color name="textColorSecondary">#252525</color>
+    <color name="textColorTertiary">#979797</color>
+
+    <color name="cardBgColor">#ECEDED</color>
+</resources>

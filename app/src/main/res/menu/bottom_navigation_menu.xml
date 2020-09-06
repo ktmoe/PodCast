@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/menuHome"
+        android:title=""
+        android:icon="@mipmap/home"
+        app:showAsAction="ifRoom"/>
+    <item android:id="@+id/menuSearch"
+        android:title=""
+        android:icon="@mipmap/search"
+        app:showAsAction="ifRoom"/>
+    <item android:id="@+id/menuDownload"
+        android:title=""
+        android:icon="@mipmap/download"
+        app:showAsAction="ifRoom"/>
+    <item android:id="@+id/menuProfile"
+        android:title=""
+        android:icon="@mipmap/profile"
+        app:showAsAction="ifRoom"/>
+</menu>

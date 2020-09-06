@@ -1,0 +1,75 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.1"
+
+    defaultConfig {
+        minSdkVersion 23
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.3.1'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    //GSON
+    implementation rootProject.ext.libraries.gson
+
+    //Retrofit
+    implementation rootProject.ext.libraries.retrofit
+    implementation rootProject.ext.libraries.retrofitGsonConverter
+    implementation rootProject.ext.libraries.retrofitRxAdapter
+
+    //RxKotlin
+    implementation rootProject.ext.libraries.rxkotlin
+    implementation rootProject.ext.libraries.rxandroid
+
+    //OKHttp
+    implementation rootProject.ext.libraries.okhttp
+    implementation rootProject.ext.libraries.okhttpLogInterceptor
+
+    implementation rootProject.ext.libraries.glide
+    annotationProcessor rootProject.ext.libraries.glideCompiler
+    implementation rootProject.ext.libraries.androidxLegacySupport
+
+    // LiveData
+    implementation rootProject.ext.libraries.liveData
+
+    // lifecycle components
+    implementation rootProject.ext.libraries.lifecycleExtension
+    kapt rootProject.ext.libraries.archLifecycleCompiler
+
+    // Annotation processor
+    kapt rootProject.ext.libraries.xlifecycleCompiler
+
+    // Room
+    implementation rootProject.ext.libraries.room
+    kapt rootProject.ext.libraries.roomCompiler
+
+    // Work Manager
+    implementation rootProject.ext.libraries.workManager
+
+    implementation rootProject.ext.libraries.androidMaterial
+}

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.PodCastDetailActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:background="@android:color/transparent"
+        app:elevation="0dp">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:elevation="0dp"
+            app:contentScrim="@color/bgColorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="25dp">
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/placeholder"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:srcCompat="@mipmap/placeholder"
+                        android:scaleType="centerCrop"/>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="@dimen/margin_xlarge"
+                    app:cardCornerRadius="@dimen/margin_medium_2"
+                    android:layout_marginStart="@dimen/margin_xlarge"
+                    app:cardBackgroundColor="@color/categoryColorArtAndDesign">
+                    <TextView
+                        android:id="@+id/type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/art_amp_design"
+                        android:padding="@dimen/margin_medium"/>
+                </androidx.cardview.widget.CardView>
+            </FrameLayout>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="350dp"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/margin_medium_2"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tvPodCastTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/dummy_pod_cast_detail_title"
+                android:lineSpacingMultiplier="1.7"
+                android:textSize="@dimen/text_heading_1x"/>
+
+            <include layout="@layout/view_pod_reaction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="@dimen/margin_medium_2"
+                android:background="@android:color/darker_gray"/>
+            <TextView
+                android:id="@+id/tvPodCastDescription"
+                android:justificationMode="inter_word"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingMultiplier="1.7"
+                android:text="@string/dummy_pod_cast_long_description"
+                android:textColor="@color/textColorTertiary"/>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+    <com.google.android.exoplayer2.ui.PlayerView
+        app:layout_behavior="@string/bottom_sheet_behavior"
+        app:behavior_hideable="false"
+        android:id="@+id/exoPlayer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:player_layout_id="@layout/playback_card"
+        app:use_controller="true"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
