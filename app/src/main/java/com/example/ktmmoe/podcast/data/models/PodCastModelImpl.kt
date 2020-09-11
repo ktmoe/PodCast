@@ -2,6 +2,9 @@ package com.example.ktmmoe.podcast.data.models
 
 import android.annotation.SuppressLint
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.map
+import com.example.ktmmoe.podcast.data.vos.Download
 import com.example.ktmmoe.podcast.data.vos.Genre
 import com.example.ktmmoe.podcast.data.vos.PodCast
 import com.example.ktmmoe.podcast.data.vos.PodCastWrapper
@@ -26,6 +29,14 @@ object PodCastModelImpl : PodCastModel, BaseModel() {
 
     override fun getPlayList(onError: (String) -> Unit): LiveData<List<PodCastWrapper>> {
         return mTheDB.playListDao().getFullPlaylist()
+    }
+
+    override fun saveDownload(podCast: PodCastWrapper, onError: (String) -> Unit) {
+        val a = mTheDB.downloadDao().insertDownload(Download(podCast.id, podCast))
+    }
+
+    override fun getDownloads(onError: (String) -> Unit): LiveData<List<Download>> {
+        return mTheDB.downloadDao().getDownloads()
     }
 
     @SuppressLint("CheckResult")

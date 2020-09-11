@@ -1,5 +1,6 @@
 package com.example.ktmmoe.podcast.delegates
 
+import android.view.View
 import android.widget.ProgressBar
 import com.example.ktmmoe.podcast.data.vos.PodCastWrapper
 
@@ -9,5 +10,5 @@ import com.example.ktmmoe.podcast.data.vos.PodCastWrapper
 interface PodCastRecyclerDelegate {
     fun onTapPodCastItem(podCastWrapper: PodCastWrapper)
 
-    fun onTapDownload(url: String, progressBar: ProgressBar)
+    fun onTapDownload(podCast: PodCastWrapper, itemView: View)
 }

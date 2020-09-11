@@ -91,13 +91,19 @@
                 android:textColor="@color/textColorTertiary"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-    <com.google.android.exoplayer2.ui.PlayerView
-        app:layout_behavior="@string/bottom_sheet_behavior"
-        app:behavior_hideable="false"
-        android:id="@+id/exoPlayer"
+<!--    <com.google.android.exoplayer2.ui.PlayerView-->
+<!--        app:layout_behavior="@string/bottom_sheet_behavior"-->
+<!--        app:behavior_hideable="false"-->
+<!--        android:id="@+id/exoPlayer"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:player_layout_id="@layout/playback_card"-->
+<!--        app:use_controller="false"/>-->
+
+    <include layout="@layout/playback_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:player_layout_id="@layout/playback_card"
-        app:use_controller="true"/>
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+        app:behavior_hideable="false"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

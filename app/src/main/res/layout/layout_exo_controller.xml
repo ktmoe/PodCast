@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:layout_marginTop="@dimen/margin_medium_2"
+    android:layout_marginBottom="@dimen/margin_medium_2">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/cardBgColor"
+            android:textAlignment="viewEnd"
+            android:layout_weight="1"
+            android:padding="@dimen/margin_medium_2"
+            android:clickable="true"
+            android:text="@string/_1x"/>
+        <ImageButton
+            android:id="@+id/ivRewind"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            style="@style/ExoMediaButton.Rewind"
+            android:src="@drawable/ic_replay_10"/>
+        <ImageButton
+            android:id="@+id/ivPause"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            style="@style/ExoMediaButton.Pause"
+            android:src="@drawable/ic_play"/>
+        <ImageButton
+            android:id="@+id/ivSkip"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            style="@style/ExoMediaButton.FastForward"
+            android:src="@drawable/ic_forward_30"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/cardBgColor"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:padding="@dimen/margin_medium_2"
+            android:text="@string/zz"/>
+</LinearLayout>

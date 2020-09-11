@@ -15,5 +15,6 @@ class CategoryListViewHolder(itemView: View): BaseViewHolder<Genre>(itemView) {
 
     override fun bindData(data: Genre) {
         mData = data
+        itemView.genreName.text = data.name
     }
 }

@@ -13,13 +13,15 @@
         android:orientation="vertical">
         <include layout="@layout/appbar_home"/>
 
-        <com.google.android.exoplayer2.ui.PlayerView
-            android:id="@+id/exoPlayer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:player_layout_id="@layout/large_media_playback"
-            app:use_controller="true"
-            android:layout_marginTop="@dimen/margin_medium_2"/>
+<!--        <com.google.android.exoplayer2.ui.PlayerView-->
+<!--            android:id="@+id/exoPlayer"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:player_layout_id="@layout/large_media_playback"-->
+<!--            app:use_controller="false"-->
+<!--            android:layout_marginTop="@dimen/margin_medium_2"/>-->
+
+        <include layout="@layout/large_media_playback"/>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"

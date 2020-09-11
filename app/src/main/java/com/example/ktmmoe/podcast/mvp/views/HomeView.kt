@@ -1,5 +1,7 @@
 package com.example.ktmmoe.podcast.mvp.views
 
+import android.app.DownloadManager
+import android.os.Handler
 import android.widget.ProgressBar
 import com.example.ktmmoe.podcast.data.vos.PodCast
 import com.example.ktmmoe.podcast.data.vos.PodCastWrapper
@@ -15,5 +17,7 @@ interface HomeView: BaseView, PodCastRecyclerDelegate {
     fun displayPodCastList(podCastList: List<PodCastWrapper>)
     fun displayRandomPodCast(podCast: PodCastResponse)
     fun showErrorSnackBar(message: String)
-    fun updateProgress(progress: Int, progressBar: ProgressBar)
+    fun updateProgress(progress: Int)
+    fun startProgressChecker(dm: DownloadManager)
+    fun stopProgressChecker(handler: Handler)
 }

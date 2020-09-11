@@ -16,6 +16,7 @@ import com.example.ktmmoe.podcast.mvp.presenters.DownloadPresenter
 import com.example.ktmmoe.podcast.mvp.presenters.impls.DownloadPresenterImpl
 import com.example.ktmmoe.podcast.mvp.views.DownloadView
 import com.example.ktmmoe.shared.fragments.BaseFragment
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_download.*
 
 class DownloadFragment : BaseFragment(), DownloadView {
@@ -34,11 +35,15 @@ class DownloadFragment : BaseFragment(), DownloadView {
         return inflater.inflate(R.layout.fragment_download, container, false)
     }
 
+    override fun onStart() {
+        super.onStart()
+        mPresenter.onUiReady(this)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupPresenter()
         mPresenter.onCreate()
-        mPresenter.onUiReady(this)
     }
 
     companion object {
@@ -52,15 +57,21 @@ class DownloadFragment : BaseFragment(), DownloadView {
         recyclerview.adapter = podCastRecyclerAdapter
     }
 
-    override fun displayPodCastList() {
-        podCastRecyclerAdapter.setNewData(mutableListOf(PodCastWrapper(), PodCastWrapper(), PodCastWrapper()))
+    override fun displayPodCastList(podCasts: List<PodCastWrapper>) {
+        emptyDownloadList.visibility = if (podCasts.isEmpty()) View.VISIBLE else View.GONE
+        recyclerview.visibility = if (podCasts.isNotEmpty()) View.VISIBLE else View.GONE
+        podCastRecyclerAdapter.setNewData(podCasts.toMutableList())
+    }
+
+    override fun showErrorSnackBar(message: String) {
+        Snackbar.make(requireView(), message, Snackbar.LENGTH_SHORT).show()
     }
 
     override fun onTapPodCastItem(podCastWrapper: PodCastWrapper) {
-        startActivity(PodCastDetailActivity.newIntent(requireContext(), podCastWrapper))
+        startActivity(PodCastDetailActivity.newIntent(requireContext(), podCastWrapper, true))
     }
 
-    override fun onTapDownload(url: String, progressBar: ProgressBar) {
-        TODO("Not yet implemented")
+    override fun onTapDownload(podCast: PodCastWrapper, itemView: View) {
+
     }
 }

@@ -52,6 +52,7 @@ class SearchFragment : BaseFragment(), SearchView {
     }
 
     override fun displayCategoryList(genres: List<Genre>) {
+        genreName.text = genres.first().name
         categoryRecyclerAdapter.setNewData(genres.toMutableList())
     }
 }

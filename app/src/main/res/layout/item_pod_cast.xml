@@ -53,6 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/textColorTertiary"
+            android:maxLines="4"
             android:paddingStart="@dimen/margin_medium_2"
             android:paddingEnd="@dimen/margin_medium_2"
             android:text="@string/dummy_pod_cast_description"/>

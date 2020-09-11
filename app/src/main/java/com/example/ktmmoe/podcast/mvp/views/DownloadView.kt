@@ -1,5 +1,6 @@
 package com.example.ktmmoe.podcast.mvp.views
 
+import com.example.ktmmoe.podcast.data.vos.PodCastWrapper
 import com.example.ktmmoe.podcast.delegates.PodCastRecyclerDelegate
 import com.example.ktmmoe.shared.mvp.views.BaseView
 
@@ -8,5 +9,6 @@ import com.example.ktmmoe.shared.mvp.views.BaseView
  **/
 interface DownloadView: BaseView, PodCastRecyclerDelegate {
     fun setupRecycler()
-    fun displayPodCastList()
+    fun displayPodCastList(podCasts: List<PodCastWrapper>)
+    fun showErrorSnackBar(message: String)
 }
