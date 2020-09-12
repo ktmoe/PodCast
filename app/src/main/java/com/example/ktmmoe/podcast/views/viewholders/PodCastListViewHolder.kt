@@ -5,6 +5,7 @@ import android.view.View
 import com.bumptech.glide.Glide
 import com.example.ktmmoe.podcast.data.vos.PodCastWrapper
 import com.example.ktmmoe.podcast.delegates.PodCastRecyclerDelegate
+import com.example.ktmmoe.podcast.utils.load
 import com.example.ktmmoe.shared.views.viewholders.BaseViewHolder
 import kotlinx.android.synthetic.main.item_pod_cast.view.*
 
@@ -32,8 +33,6 @@ class PodCastListViewHolder(itemView: View, delegate: PodCastRecyclerDelegate, p
         itemView.tvPodCastTitle.text = mData?.data?.title
         itemView.tvPodCastDescription.text = Html.fromHtml(mData?.data?.description)
         itemView.type.text = mData?.type
-        Glide.with(itemView.context)
-            .load(data.data.image)
-            .into(itemView.placeholder)
+        itemView.placeholder.load(data.data.image)
     }
 }

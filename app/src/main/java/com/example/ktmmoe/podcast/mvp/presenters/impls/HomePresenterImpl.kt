@@ -39,10 +39,8 @@ class HomePresenterImpl: HomePresenter, AbstractBasePresenter<HomeView>() {
 
     private val randomPodCast: MutableLiveData<PodCastResponse> = MutableLiveData()
 
-    val progress: MutableLiveData<Int> = MutableLiveData()
-    private var progressBar: ProgressBar? = null
-
     override fun onCreate() {
+        mView?.setupViewPods()
         mView?.setupRecycler()
     }
 
@@ -50,9 +48,6 @@ class HomePresenterImpl: HomePresenter, AbstractBasePresenter<HomeView>() {
         getData(lifecycleOwner)
         randomPodCast.observe(lifecycleOwner, Observer {
             mView?.displayRandomPodCast(it)
-        })
-        progress.observe(lifecycleOwner, Observer {p->
-            mView?.updateProgress(p)
         })
     }
 
@@ -74,41 +69,7 @@ class HomePresenterImpl: HomePresenter, AbstractBasePresenter<HomeView>() {
         val request = DownloadManager.Request(uri)
         request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "${podCast.id}.mp3")
             .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-        val id = downloadManager.enqueue(request)
-        mView?.startProgressChecker(downloadManager)
-
-//        var downloading = true
-//
-//        Observable.just(downloading)
-//            .subscribeOn(Schedulers.io())
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .subscribe{
-//                val query = DownloadManager.Query()
-//                query.setFilterById(id)
-//                val cursor = downloadManager.query(query)
-//                cursor.moveToFirst()
-//                while (downloading) {
-//                    val bytesDownloaded = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR))
-//                    val totalBytes = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_TOTAL_SIZE_BYTES))
-//                    Log.d("DOWNLOAD", "$bytesDownloaded, $totalBytes")
-//                    if (cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS)) == DownloadManager.STATUS_SUCCESSFUL) {
-//                        downloading = false
-//                        cursor.close()
-//                    }
-//                    else progress.postValue((bytesDownloaded * 100) / totalBytes)
-//                }
-//            }
-//        while (downloading) {
-//            cursor.moveToFirst()
-//            val bytesDownloaded = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR))
-//            if (cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS)) == DownloadManager.STATUS_SUCCESSFUL) {
-//                downloading = false
-//                cursor.close()
-//            }
-//            else progress.postValue(bytesDownloaded)
-
-//        }
-
+        downloadManager.enqueue(request)
     }
 
     private fun getData(lifecycleOwner: LifecycleOwner) {

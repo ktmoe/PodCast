@@ -14,10 +14,8 @@ import com.example.ktmmoe.shared.mvp.views.BaseView
  **/
 interface HomeView: BaseView, PodCastRecyclerDelegate {
     fun setupRecycler()
+    fun setupViewPods()
     fun displayPodCastList(podCastList: List<PodCastWrapper>)
     fun displayRandomPodCast(podCast: PodCastResponse)
     fun showErrorSnackBar(message: String)
-    fun updateProgress(progress: Int)
-    fun startProgressChecker(dm: DownloadManager)
-    fun stopProgressChecker(handler: Handler)
 }

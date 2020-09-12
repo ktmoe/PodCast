@@ -1,84 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="200dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="25dp"
+    app:cardCornerRadius="24dp"
     app:cardBackgroundColor="@color/bgColorPrimary">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/margin_medium_2"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            app:cardCornerRadius="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imv_song_cover"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@mipmap/placeholder"/>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_song_title"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="Women Tech Podcast"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintStart_toEndOf="@+id/card"
+            app:layout_constraintTop_toTopOf="@+id/card" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_song_title_hash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="The #Women Tech Podcast"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@id/tv_song_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_song_title" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_medium_2"
-            android:layout_marginBottom="@dimen/margin_medium_2"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:gravity="center_horizontal|end"
+            app:layout_constraintTop_toBottomOf="@id/tv_song_title_hash"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/margin_medium_2">
 
-            <androidx.cardview.widget.CardView
+            <ProgressBar
+                android:id="@+id/exo_progress_placeholder"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:progress="70"
+                android:progressTint="@color/progressBarColor"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/exo_position"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="25dp">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/placeholder"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    app:srcCompat="@mipmap/placeholder"/>
-            </androidx.cardview.widget.CardView>
+                android:layout_marginStart="16dp"
+                android:text="1h left"
+                android:textColor="@color/progressBarColor"
+                android:textSize="14sp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="@dimen/margin_medium"
-                android:layout_marginStart="@dimen/margin_medium_3">
-                <TextView
-                    android:id="@+id/tvPodCastTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_regular_2x"
-                    android:textColor="@android:color/white"
-                    android:ellipsize="end"
-                    android:layout_marginBottom="@dimen/margin_medium"
-                    android:text="@string/dummy_pod_cast_title"/>
-                <TextView
-                    android:id="@+id/tvPodCastDescription"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_regular_2x"
-                    android:textColor="@android:color/white"
-                    android:ellipsize="end"
-                    android:maxLines="3"
-                    android:text="@string/dummy_pod_cast_description"/>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="@dimen/margin_medium"
-                    android:weightSum="1.2">
-                    <com.google.android.exoplayer2.ui.DefaultTimeBar
-                        android:id="@+id/timeBar"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:progressTint="@color/progressBarColor"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/progressBarColor"
-                        android:layout_marginStart="@dimen/margin_medium_2"
-                        android:text="@string/dummy_hour_left"/>
-                </LinearLayout>
-            </LinearLayout>
         </LinearLayout>
-        <com.google.android.exoplayer2.ui.PlayerControlView
-            android:id="@+id/playerControlView"
+
+        <LinearLayout
+            android:id="@+id/podcast_controller_ll"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:controller_layout_id="@layout/layout_exo_controller"/>
-    </LinearLayout>
+            android:layout_height="50dp"
+            android:weightSum="1"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/imvForwardOne"
+                android:layout_weight="0.2"
+                android:layout_width="0dp"
+                android:layout_height="28dp"
+                android:text="@string/_1x"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginStart="8dp"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                style="@style/ExoMediaButton.Rewind"
+                android:id="@+id/exo_rew"
+                android:contentDescription="@string/exo_controls_rewind_description"
+                android:layout_weight="0.2"
+                android:layout_width="0dp"
+                android:layout_height="28dp"
+                android:src="@drawable/ic_replay_10"
+                android:layout_gravity="center"
+                android:layout_marginStart="8dp"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                style="@style/ExoMediaButton.Play"
+                android:id="@+id/exo_play"
+                android:layout_weight="0.15"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:src="@drawable/exo_controls_play"
+                android:contentDescription="@string/exo_controls_play_description"
+                android:layout_gravity="center"
+                android:background="@drawable/ic_play"
+                android:layout_marginStart="8dp"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                style="@style/ExoMediaButton.Pause"
+                android:id="@+id/exo_pause"
+                android:layout_weight="0.15"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:src="@drawable/exo_controls_pause"
+                android:contentDescription="@string/exo_controls_pause_description"
+                android:background="@drawable/ic_pause"
+                android:layout_marginStart="8dp"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                style="@style/ExoMediaButton.FastForward"
+                android:id="@+id/exo_ffwd"
+                android:layout_weight="0.2"
+                android:layout_width="0dp"
+                android:src="@drawable/ic_forward_30"
+                android:contentDescription="@string/exo_controls_fastforward_description"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="8dp"/>
+
+            <TextView
+                android:id="@+id/imvSleep"
+                android:layout_weight="0.2"
+                android:layout_width="0dp"
+                android:layout_height="28dp"
+                android:text="@string/zz"
+                android:gravity="start"
+                android:layout_gravity="center"
+                android:layout_marginStart="8dp"/>
+
+        </LinearLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </androidx.cardview.widget.CardView>

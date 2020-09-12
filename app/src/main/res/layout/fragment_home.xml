@@ -21,7 +21,18 @@
 <!--            app:use_controller="false"-->
 <!--            android:layout_marginTop="@dimen/margin_medium_2"/>-->
 
-        <include layout="@layout/large_media_playback"/>
+<!--        <include layout="@layout/large_media_playback"/>-->
+        <com.example.ktmmoe.podcast.views.viewpods.ExoPlayerViewPod
+            android:id="@+id/home_music_player"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:rewind_increment="10000"
+            app:fastforward_increment="30000"
+            app:show_timeout="0"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            app:controller_layout_id="@layout/large_media_playback" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"

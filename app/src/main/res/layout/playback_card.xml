@@ -1,48 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/bottom_sheet"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardBackgroundColor="@color/bgColorPrimary"
-    android:layout_marginStart="@dimen/margin_medium_2"
-    android:layout_marginEnd="@dimen/margin_medium_2"
-    android:layout_marginBottom="@dimen/margin_medium_2"
-    app:cardCornerRadius="25dp">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/margin_medium_2"
-            android:orientation="vertical">
+    android:layout_height="120dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="24dp"
+    app:cardBackgroundColor="@color/bgColorPrimary">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="@dimen/margin_medium">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/progressBarColor"
-                    android:layout_marginEnd="@dimen/margin_medium_2"
-                    android:text="@string/dummy_been_time"/>
-                <com.google.android.exoplayer2.ui.DefaultTimeBar
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/progressBarColor"
-                    android:layout_marginStart="@dimen/margin_medium_2"
-                    android:text="@string/dummy_hour_left"/>
-            </LinearLayout>
-            <com.google.android.exoplayer2.ui.PlayerControlView
-                android:id="@+id/playerControlView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:controller_layout_id="@layout/layout_exo_controller"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/exo_position"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:text="05:15"
+            android:textColor="@color/textColorSecondary"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/exo_progress_placeholder"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/exo_progress_placeholder" />
+
+        <ProgressBar
+            android:id="@+id/exo_progress_placeholder"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:progress="70"
+            android:progressTint="@color/progressBarColor"
+            app:layout_constraintEnd_toStartOf="@+id/exo_duration"
+            app:layout_constraintStart_toEndOf="@id/exo_position"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/exo_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:text="18:51"
+            android:textColor="@color/progressBarColor"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/exo_progress_placeholder"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/exo_progress_placeholder" />
+
+        <LinearLayout
+            android:id="@+id/podcast_controller_ll"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/exo_progress_placeholder">
+
+            <TextView
+                android:id="@+id/imvForwardOne"
+                android:layout_width="0dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="8dp"
+                android:layout_weight="0.2"
+                android:text="@string/_1x"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                style="@style/ExoMediaButton.Rewind"
+                android:id="@+id/exo_rew"
+                android:layout_width="0dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="8dp"
+                android:layout_weight="0.2"
+                android:contentDescription="@string/exo_controls_rewind_description"
+                android:src="@drawable/ic_replay_10" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                style="@style/ExoMediaButton.Play"
+                android:id="@+id/exo_play"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="8dp"
+                android:layout_weight="0.15"
+                android:contentDescription="@string/exo_controls_play_description"
+                android:src="@drawable/ic_play" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                style="@style/ExoMediaButton.Pause"
+                android:id="@+id/exo_pause"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="8dp"
+                android:layout_weight="0.15"
+                android:contentDescription="@string/exo_controls_pause_description"
+                android:src="@drawable/ic_pause" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/exo_ffwd"
+                style="@style/ExoMediaButton.FastForward"
+                android:layout_width="0dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="8dp"
+                android:layout_weight="0.2"
+                android:contentDescription="@string/exo_controls_fastforward_description"
+                android:src="@drawable/ic_forward_30" />
+
+            <TextView
+                android:id="@+id/imvSleep"
+                android:layout_width="0dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="8dp"
+                android:layout_weight="0.2"
+                android:text="@string/zz"/>
+
         </LinearLayout>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

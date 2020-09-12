@@ -23,6 +23,8 @@ import com.example.ktmmoe.podcast.mvp.presenters.impls.HomePresenterImpl
 import com.example.ktmmoe.podcast.mvp.views.HomeView
 import com.example.ktmmoe.podcast.network.responses.PodCastResponse
 import com.example.ktmmoe.podcast.utils.ExoPlayerWorks
+import com.example.ktmmoe.podcast.utils.load
+import com.example.ktmmoe.podcast.views.viewpods.ExoPlayerViewPod
 import com.example.ktmmoe.shared.fragments.BaseFragment
 import com.google.android.exoplayer2.ExoPlaybackException
 import com.google.android.exoplayer2.ExoPlayerFactory
@@ -38,14 +40,15 @@ import com.google.android.exoplayer2.util.Util
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.large_media_playback.*
+import kotlinx.android.synthetic.main.large_media_playback.view.*
 import kotlinx.android.synthetic.main.layout_exo_controller.*
 
-class HomeFragment : BaseFragment(), HomeView {
+class HomeFragment : BaseFragment(), HomeView, Player.EventListener  {
 
     private lateinit var mPresenter: HomePresenterImpl
     private lateinit var podCastRecyclerAdapter: PodCastRecyclerAdapter
-    private lateinit var mExoPlayer: SimpleExoPlayer
-    private var playbackPosition: Long = 0
+
+    private lateinit var mExoplayerViewPod: ExoPlayerViewPod
 
     private lateinit var dm: DownloadManager
 
@@ -85,42 +88,22 @@ class HomeFragment : BaseFragment(), HomeView {
         recyclerview.adapter = podCastRecyclerAdapter
     }
 
+    override fun setupViewPods() {
+        mExoplayerViewPod = home_music_player as ExoPlayerViewPod
+    }
+
     override fun displayPodCastList(podCastList: List<PodCastWrapper>) {
         podCastRecyclerAdapter.setNewData(podCastList.toMutableList())
     }
 
     override fun displayRandomPodCast(podCast: PodCastResponse) {
-        tvPodCastTitle.text = podCast.title
-        tvPodCastDescription.text = Html.fromHtml(podCast.description)
-        Glide.with(requireContext())
-            .load(podCast.image)
-            .into(placeholder)
-
-        setupExoPlayer(podCast)
-
-    }
-
-    private fun setupExoPlayer(podCast: PodCastResponse) {
-        val exoPlayerWorks = ExoPlayerWorks()
-        playerControlView.player = exoPlayerWorks.player(requireContext())
-        exoPlayerWorks.play(podCast.audio)
+        tv_song_title.text = podCast.title
+        imv_song_cover.load(podCast.image)
+        mExoplayerViewPod.setData(podCast.audio)
     }
 
     override fun showErrorSnackBar(message: String) {
         Snackbar.make(requireView(), message, Snackbar.LENGTH_SHORT).show()
-    }
-
-    override fun updateProgress(progress: Int) {
-//        timeBar.progress = progress
-    }
-
-    override fun startProgressChecker(dm: DownloadManager) {
-        this.dm = dm
-//        progressChecker.run()
-    }
-
-    override fun stopProgressChecker(handler: Handler) {
-        TODO("Not yet implemented")
     }
 
     override fun onTapPodCastItem(podCastWrapper: PodCastWrapper) {
@@ -131,15 +114,10 @@ class HomeFragment : BaseFragment(), HomeView {
         mPresenter.onDownload(podCast, requireActivity(), itemView)
     }
 
-    private fun releasePlayer() {
-        playbackPosition = mExoPlayer.currentPosition
-        mExoPlayer.seekTo(mExoPlayer.currentWindowIndex, mExoPlayer.currentPosition)
-        mExoPlayer.release()
-    }
 
     override fun onStop() {
         super.onStop()
-        releasePlayer()
+        mExoplayerViewPod.releasePlayer()
     }
 
 }

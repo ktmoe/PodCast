@@ -12,6 +12,7 @@ import com.example.ktmmoe.shared.mvp.presenters.AbstractBasePresenter
 class PodCastDetailPresenterImpl: PodCastDetailPresenter, AbstractBasePresenter<PodCastDetailView>() {
 
     override fun onUiReady(lifecycleOwner: LifecycleOwner, podCastWrapper: PodCastWrapper) {
+        mView?.setupViewPods()
         mView?.bindData(podCastWrapper)
     }
 }
