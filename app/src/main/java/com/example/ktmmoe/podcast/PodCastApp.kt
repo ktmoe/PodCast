@@ -2,7 +2,7 @@ package com.example.ktmmoe.podcast
 
 import android.app.Application
 import androidx.work.*
-import com.example.ktmmoe.podcast.data.models.PodCastModelImpl
+import com.example.ktmmoe.podcast.data.models.FireStorePodCastModelImpl
 import com.example.ktmmoe.podcast.workers.PrefetchDataWorker
 import java.util.concurrent.TimeUnit
 
@@ -13,7 +13,8 @@ class PodCastApp : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        PodCastModelImpl.initDatabase(applicationContext)
+//        RealtimeDBPodCastModelImpl.initDatabase(applicationContext)
+        FireStorePodCastModelImpl.initDatabase(applicationContext)
 
 //        getDataOneTime()
 //        getNewsPeriodically()

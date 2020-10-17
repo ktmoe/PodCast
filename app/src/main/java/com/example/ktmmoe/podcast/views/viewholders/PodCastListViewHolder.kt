@@ -31,8 +31,7 @@ class PodCastListViewHolder(itemView: View, delegate: PodCastRecyclerDelegate, p
         itemView.tvPodCastDescription.visibility = View.VISIBLE
 
         itemView.tvPodCastTitle.text = mData?.data?.title
-        itemView.tvPodCastDescription.text = Html.fromHtml(mData?.data?.description)
-        itemView.type.text = mData?.type
+        itemView.tvPodCastDescription.text = Html.fromHtml(data.data.description)
         itemView.placeholder.load(data.data.image)
     }
 }

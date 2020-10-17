@@ -12,6 +12,7 @@ class ExoPlayerEventListener : Player.EventListener {
 
     override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
         super.onPlayerStateChanged(playWhenReady, playbackState)
+        Log.d("Playing","Player State Changed... $playbackState")
         when (playbackState) {
             ExoPlayer.STATE_IDLE -> ExoPlayer.STATE_IDLE
             ExoPlayer.STATE_BUFFERING -> ExoPlayer.STATE_BUFFERING

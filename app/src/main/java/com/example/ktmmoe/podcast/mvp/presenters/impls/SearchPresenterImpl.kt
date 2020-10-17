@@ -4,8 +4,10 @@ import android.util.Log
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
+import com.example.ktmmoe.podcast.data.models.FireStorePodCastModelImpl
 import com.example.ktmmoe.podcast.data.models.PodCastModel
 import com.example.ktmmoe.podcast.data.models.PodCastModelImpl
+import com.example.ktmmoe.podcast.data.models.RealtimeDBPodCastModelImpl
 import com.example.ktmmoe.podcast.mvp.presenters.DownloadPresenter
 import com.example.ktmmoe.podcast.mvp.presenters.SearchPresenter
 import com.example.ktmmoe.podcast.mvp.views.DownloadView
@@ -16,7 +18,8 @@ import com.example.ktmmoe.shared.mvp.presenters.AbstractBasePresenter
  * Created by ktmmoe on 01, September, 2020
  **/
 class SearchPresenterImpl: SearchPresenter, AbstractBasePresenter<SearchView>() {
-    private val mPodCastModel: PodCastModel = PodCastModelImpl
+//    private val mPodCastModel: PodCastModel = RealtimeDBPodCastModelImpl
+    private val mPodCastModel: PodCastModel = FireStorePodCastModelImpl
 
     override fun onCreate() {
         mView?.setupRecycler()

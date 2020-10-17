@@ -11,10 +11,10 @@ import java.io.Serializable
 @Entity(tableName = "podCastWrapper")
 @TypeConverters(PodCastResponseTypeConverter::class)
 data class PodCastWrapper(
-    @SerializedName("added_at_ms") val addedAtMs: Long = 0L,
+    @SerializedName("added_at_ms") val addedAtMs: Long? = 0L,
     @SerializedName("data") val `data`: PodCastResponse = PodCastResponse(),
     @PrimaryKey(autoGenerate = false)
     @SerializedName("id") val id: Int = 0,
-    @SerializedName("notes") val notes: String = "",
-    @SerializedName("type") val type: String = ""
+    @SerializedName("notes") val notes: String? = "",
+    @SerializedName("type") val type: String? = ""
 ) : Serializable

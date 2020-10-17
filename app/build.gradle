@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 30
@@ -119,5 +120,11 @@ dependencies {
     //coroutines
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-alpha07" // for viewModelScope
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.3.0-alpha07"
+
+    //firebase related
+    implementation 'com.google.firebase:firebase-analytics:17.5.0'
+    implementation 'com.google.firebase:firebase-database-ktx:19.4.0'
+    implementation 'com.google.firebase:firebase-firestore-ktx:21.6.0'
+    implementation 'com.google.firebase:firebase-storage:19.2.0'
 
 }

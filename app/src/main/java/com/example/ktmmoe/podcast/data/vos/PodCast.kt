@@ -13,3 +13,5 @@ data class PodCast(
     @SerializedName("thumbnail") val thumbnail: String = "",
     @SerializedName("title") val title: String = ""
 ): Serializable
+
+fun Map<String, Any>.podCast(): PodCast = PodCast(id = this["id"] as String, image = this["image"] as String, listenNotesUrl = this["listennotes_url"] as String, publisher = this["publisher"] as String, thumbnail = this["thumbnail"] as String, title = this["title"] as String)

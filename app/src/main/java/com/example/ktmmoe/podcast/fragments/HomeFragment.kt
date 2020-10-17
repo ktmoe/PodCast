@@ -99,7 +99,7 @@ class HomeFragment : BaseFragment(), HomeView, Player.EventListener  {
     override fun displayRandomPodCast(podCast: PodCastResponse) {
         tv_song_title.text = podCast.title
         imv_song_cover.load(podCast.image)
-        mExoplayerViewPod.setData(podCast.audio)
+        mExoplayerViewPod.setData(PodCastWrapper(data = podCast), isDownloaded = false)
     }
 
     override fun showErrorSnackBar(message: String) {

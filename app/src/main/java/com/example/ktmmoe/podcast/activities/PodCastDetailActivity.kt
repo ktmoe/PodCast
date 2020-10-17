@@ -2,21 +2,16 @@ package com.example.ktmmoe.podcast.activities
 
 import android.content.Context
 import android.content.Intent
-import android.media.session.PlaybackState
-import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Environment
 import android.text.Html
 import androidx.lifecycle.ViewModelProviders
-import com.bumptech.glide.Glide
 import com.example.ktmmoe.podcast.R
 import com.example.ktmmoe.podcast.data.vos.PodCastWrapper
 import com.example.ktmmoe.podcast.mvp.presenters.PodCastDetailPresenter
 import com.example.ktmmoe.podcast.mvp.presenters.impls.PodCastDetailPresenterImpl
 import com.example.ktmmoe.podcast.mvp.views.PodCastDetailView
 import com.example.ktmmoe.podcast.utils.load
-import com.example.ktmmoe.podcast.views.viewpods.MiniExoPlayerViewPod
+import com.example.ktmmoe.podcast.views.viewpods.ExoPlayerViewPod
 import com.example.ktmmoe.shared.activities.BaseActivity
 import com.google.android.exoplayer2.Player
 import kotlinx.android.synthetic.main.activity_pod_cast_detail.*
@@ -24,7 +19,7 @@ import kotlinx.android.synthetic.main.activity_pod_cast_detail.*
 class PodCastDetailActivity : BaseActivity(), PodCastDetailView, Player.EventListener {
     private lateinit var mPresenter: PodCastDetailPresenter
 
-    private lateinit var mExoplayerViewPod : MiniExoPlayerViewPod
+    private lateinit var mExoplayerViewPod : ExoPlayerViewPod
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,18 +34,17 @@ class PodCastDetailActivity : BaseActivity(), PodCastDetailView, Player.EventLis
     }
 
     override fun setupViewPods() {
-        mExoplayerViewPod = playBackCard as MiniExoPlayerViewPod
+        mExoplayerViewPod = playBackCard as ExoPlayerViewPod
     }
 
     override fun bindData(podCastWrapper: PodCastWrapper) {
         val isDownloaded = intent.getBooleanExtra("d", false)
-
-        placeholder.load(podCastWrapper.data.image)
+        placeholder.load(podCastWrapper.data.image?: "")
 
         tvPodCastTitle.text = podCastWrapper.data.title
         tvPodCastDescription.text = Html.fromHtml(podCastWrapper.data.description)
 
-        mExoplayerViewPod.setData(podCastWrapper.data.audio)
+        mExoplayerViewPod.setData(podCastWrapper, isDownloaded = isDownloaded)
 
 //        val userAgent = Util.getUserAgent(this, "exoPlayer")
 //        val uri = if (isDownloaded) Uri.parse("${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)}/${podCastWrapper.id}.mp3") else Uri.parse(podCastWrapper.data.audio)

@@ -9,10 +9,9 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 /**
- * Created by ktmmoe on 04, September, 2020
+ * Created by ktmmoe on 26, September, 2020
  **/
 interface PodCastApi {
-
     @GET("just_listen")
     fun getRandomPodCast(): Observable<PodCastResponse>
 

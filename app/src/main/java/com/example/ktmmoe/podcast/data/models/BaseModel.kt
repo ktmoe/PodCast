@@ -19,10 +19,15 @@ import java.util.concurrent.TimeUnit
 
 abstract class BaseModel {
 
-    protected var mPodCastApi: PodCastApi
+//    protected var mPodCastApi: PodCastApi = RealtimeDatabasePodCastApi
     protected lateinit var mTheDB: PodCastDB
+    protected var mPodCastApi: PodCastApi
 
     init {
+        mPodCastApi = getRetrofit().create(PodCastApi::class.java)
+    }
+
+    private fun getRetrofit() : Retrofit{
         val interceptor = HttpLoggingInterceptor()
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
 
@@ -33,14 +38,12 @@ abstract class BaseModel {
             .writeTimeout(15, TimeUnit.SECONDS)
             .build()
 
-        val retrofit = Retrofit.Builder()
+        return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(mOkHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
-
-        mPodCastApi = retrofit.create(PodCastApi::class.java)
     }
 
     fun initDatabase(context: Context) {

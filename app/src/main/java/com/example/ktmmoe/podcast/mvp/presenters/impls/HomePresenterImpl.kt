@@ -13,8 +13,10 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.viewModelScope
+import com.example.ktmmoe.podcast.data.models.FireStorePodCastModelImpl
 import com.example.ktmmoe.podcast.data.models.PodCastModel
 import com.example.ktmmoe.podcast.data.models.PodCastModelImpl
+import com.example.ktmmoe.podcast.data.models.RealtimeDBPodCastModelImpl
 import com.example.ktmmoe.podcast.data.vos.PodCastWrapper
 import com.example.ktmmoe.podcast.mvp.presenters.HomePresenter
 import com.example.ktmmoe.podcast.mvp.views.HomeView
@@ -35,7 +37,9 @@ import java.net.URL
  * Created by ktmmoe on 30, August, 2020
  **/
 class HomePresenterImpl: HomePresenter, AbstractBasePresenter<HomeView>() {
-    private val mPodCastModel : PodCastModel = PodCastModelImpl
+//    private val mPodCastModel : PodCastModel = PodCastModelImpl
+//    private val mPodCastModel : PodCastModel = RealtimeDBPodCastModelImpl
+    private val mPodCastModel : PodCastModel = FireStorePodCastModelImpl
 
     private val randomPodCast: MutableLiveData<PodCastResponse> = MutableLiveData()
 

@@ -2,12 +2,16 @@ package com.example.ktmmoe.podcast.views.viewpods
 
 import android.content.Context
 import android.net.Uri
+import android.os.Environment
 import android.util.AttributeSet
+import com.example.ktmmoe.podcast.data.vos.PodCastWrapper
 import com.example.ktmmoe.podcast.utils.ExoPlayerEventListener
 import com.example.ktmmoe.podcast.utils.buildMediaSource
+import com.example.ktmmoe.podcast.utils.buildOfflineMediaSource
 import com.example.ktmmoe.podcast.utils.load
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.ui.PlayerControlView
+import kotlinx.android.synthetic.main.activity_pod_cast_detail.view.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import kotlinx.android.synthetic.main.large_media_playback.view.*
 
@@ -33,7 +37,9 @@ class ExoPlayerViewPod @JvmOverloads constructor(
 
     private fun initializePlayer() {
         simpleExoplayer = SimpleExoPlayer.Builder(context).build()
-        home_music_player.player = simpleExoplayer
+        if (home_music_player != null) {
+            home_music_player.player = simpleExoplayer
+        } else playBackCard.player = simpleExoplayer
     }
 
     fun releasePlayer() {
@@ -47,9 +53,10 @@ class ExoPlayerViewPod @JvmOverloads constructor(
         }
     }
 
-    fun setData(audioUrl: String) {
-        val uri = Uri.parse(audioUrl)
-        val mediaSource = buildMediaSource(context, uri)
+    fun setData(wrapper: PodCastWrapper, isDownloaded: Boolean) {
+        val uri = if (isDownloaded) Uri.parse("${Environment.getExternalStoragePublicDirectory(
+            Environment.DIRECTORY_DOWNLOADS)}/${wrapper.id}.mp3") else Uri.parse(wrapper.data.audio)
+        val mediaSource = if (isDownloaded) buildOfflineMediaSource(context, uri) else buildMediaSource(context, uri)
         simpleExoplayer?.playWhenReady = playWhenReady
         simpleExoplayer?.seekTo(currentWindow, playbackPosition)
         simpleExoplayer?.addListener(exoPlayerEventListener)

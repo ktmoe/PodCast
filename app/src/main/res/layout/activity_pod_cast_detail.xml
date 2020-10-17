@@ -56,7 +56,6 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="350dp"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
         <LinearLayout
             android:layout_width="match_parent"
@@ -89,15 +88,23 @@
                 android:lineSpacingMultiplier="1.7"
                 android:text="@string/dummy_pod_cast_long_description"
                 android:textColor="@color/textColorTertiary"/>
+<!--            <com.example.ktmmoe.podcast.views.viewpods.MiniExoPlayerViewPod-->
+<!--                android:id="@+id/playBackCard"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:controller_layout_id="@layout/playback_card"/>-->
+            <com.example.ktmmoe.podcast.views.viewpods.ExoPlayerViewPod
+                android:id="@+id/playBackCard"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:rewind_increment="10000"
+                app:fastforward_increment="30000"
+                app:show_timeout="0"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:controller_layout_id="@layout/playback_card" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
-    <com.example.ktmmoe.podcast.views.viewpods.MiniExoPlayerViewPod
-        android:id="@+id/playBackCard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:controller_layout_id="@layout/playback_card"
-        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-        app:behavior_hideable="false"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
