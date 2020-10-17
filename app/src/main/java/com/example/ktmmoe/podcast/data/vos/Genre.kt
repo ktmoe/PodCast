@@ -12,4 +12,4 @@ data class Genre(
     @SerializedName("parent_id") val parentId: Int = 0
 )
 
-fun Map<String, Any>.genre(): Genre= Genre(id = this["id"] as Int, name = this["name"] as String, parentId = this["parent_id"] as Int)
+fun Map<String, Any>.genre(): Genre= Genre(id = (this["id"] as Long).toInt(), name = this["name"] as String)
